@@ -10,7 +10,7 @@ extension Hero {
     
     func leastValuableItem(inventory: [UDItem]) -> UDItem? {
         
-        var valuableItem: UDItem?
+        var valuableItem: UDItem? = nil
         
         if inventory.count != 0 {
             
@@ -22,8 +22,6 @@ extension Hero {
                     valuableItem = item
                 }
             }
-        } else {
-            valuableItem = nil
         }
 
         return valuableItem
