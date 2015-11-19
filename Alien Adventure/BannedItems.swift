@@ -14,15 +14,21 @@ extension Hero {
         
         var bannedList = [Int]()
         
-        let dataFileURL = NSBundle.mainBundle().URLForResource("ItemList", withExtension: "plist")!
+        let dataFileURL = NSBundle.mainBundle().URLForResource(dataFile, withExtension: "plist")!
         let itemsArray = NSArray(contentsOfURL: dataFileURL)!
         
         for item in itemsArray {
-            if let name = item["Name"] as? String {
-                print(name)
+            if let name = item.objectForKey("Name") as? String {
+                if name.rangeOfString("Laser") != nil {
+                    if let age = item.objectForKey("HistoricalData")?.objectForKey("CarbonAge") as? Int {
+                        if age < 30 {
+                            bannedList.append((item.objectForKey("ItemID") as? Int)!)
+                        }
+                    }
+                }
             }
-           
         }
+        print(bannedList)
         return bannedList
     }
 }
