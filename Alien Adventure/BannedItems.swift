@@ -28,7 +28,6 @@ extension Hero {
                 }
             }
         }
-        print(bannedList)
         return bannedList
     }
 }
