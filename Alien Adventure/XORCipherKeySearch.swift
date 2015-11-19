@@ -15,14 +15,19 @@ extension Hero {
         var key: UInt8 = 0
         
         for x in UInt8.min..<UInt8.max {
+            
             var decrypted = [UInt8]()
+            
             for character in encryptedString {
             // ADD CODE: perform decryption
+                decrypted.append(character ^ x)
             }
-        
+
             if let decryptedString = String(bytes: decrypted,
             encoding: NSUTF8StringEncoding) where decryptedString == "udacity" {
             // ADD CODE: found match, now what?
+                key = x
+                break
             }
         }
         
