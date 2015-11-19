@@ -33,16 +33,13 @@ extension Hero {
                                 maxScore = itemScore
                                 if let itemName = item["Name"] as? String {
                                     maxName = itemName
+                                }
                             }
                         }
                     }
                 }
             }
-            
-            }
         }
-        
-//        print(planetDictionariesfromJSON)
         
         return maxName
     }

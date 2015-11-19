@@ -28,6 +28,7 @@ extension Hero {
                 }
             }
         }
+        
         return bannedList
     }
 }
