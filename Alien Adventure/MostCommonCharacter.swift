@@ -12,20 +12,25 @@ extension Hero {
         
         var letters = [Character:Int]()
         
-        for item in inventory {
-            let name = item.name.lowercaseString
-            print(name)
-            for i in name.characters {
-                if let value = letters[i] {
-                    let newCount = value + 1
-                    letters[i] = newCount
-                }
-                else {
-                    letters[i] = 1
+        if inventory.count > 0 {
+            
+            for item in inventory {
+//                print(item.name)
+                let name = item.name.lowercaseString
+                for i in name.characters {
+                    if let value = letters[i] {
+                        let newCount = value + 1
+                        letters[i] = newCount
+                    } else {
+                        letters[i] = 1
+                    }
                 }
             }
+            
+        } else {
+            return nil
         }
-
+        
         var maxValue: Int = 0
         var maxCharacter: Character = "a"
         
@@ -35,7 +40,7 @@ extension Hero {
                 maxCharacter = letter
             }
         }
-
+//        print(letters)
         return maxCharacter
     }
 }
