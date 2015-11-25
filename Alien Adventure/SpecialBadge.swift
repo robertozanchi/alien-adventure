@@ -9,8 +9,6 @@
 import SpriteKit
 
 class SpecialBadge: Badge {
-
-    var requestType: UDRequestType
     
     override init(requestType: UDRequestType) {
         self.requestType = requestType
