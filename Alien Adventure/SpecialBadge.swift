@@ -9,7 +9,7 @@
 import SpriteKit
 
 class SpecialBadge: Badge {
-    
+
     override init(requestType: UDRequestType) {
         super.init(requestType: requestType)
         self.texture = SKTexture(imageNamed: "BadgeTeal")
@@ -19,4 +19,8 @@ class SpecialBadge: Badge {
         fatalError("init(coder:) has not been implemented")
     }
 
+    enum BadgeAnimation: Int {
+        case GrowAndShrink = 0, Rotate, Shake
+    }
+    
 }
