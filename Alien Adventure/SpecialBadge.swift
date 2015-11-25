@@ -11,9 +11,8 @@ import SpriteKit
 class SpecialBadge: Badge {
     
     override init(requestType: UDRequestType) {
-        self.requestType = requestType
-        let badge = SKTexture(imageNamed: "BadgeTeal")
-        super.init(texture: badge, color: UIColor.clearColor(), size: CGSizeMake(48, 48))
+        super.init(requestType: requestType)
+        self.texture = SKTexture(imageNamed: "BadgeTeal")
     }
 
     required init?(coder aDecoder: NSCoder) {
