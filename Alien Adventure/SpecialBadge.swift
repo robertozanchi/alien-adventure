@@ -13,14 +13,56 @@ class SpecialBadge: Badge {
     override init(requestType: UDRequestType) {
         super.init(requestType: requestType)
         self.texture = SKTexture(imageNamed: "BadgeTeal")
+        
+        enum BadgeAnimation: Int {
+            case GrowAndShrink = 0, Rotate, Shake
+        }
+    
+        func growAndShrink() {
+            let x: Float = 10
+            let y: Float = 6
+            let numberOfTimes = 2.0 / 0.04
+            var actionsArray = [SKAction]()
+            
+            for _ in 1...Int(numberOfTimes) {
+                let dX = Float(arc4random_uniform(UInt32(x))) - x / 2
+                let dY = Float(arc4random_uniform(UInt32(y))) - y / 2
+                let action = SKAction.moveByX(CGFloat(dX), y: CGFloat(dY), duration: 0.02)
+                actionsArray.append(action)
+                actionsArray.append(action.reversedAction())
+            }
+        
+            let sequencedAction = SKAction.sequence(actionsArray)
+            self.runAction(SKAction.repeatActionForever(sequencedAction))
+        }
+    
+        func rotate() {
+            let action = SKAction.rotateByAngle(CGFloat(-M_PI), duration: 1.5)
+            self.runAction(SKAction.repeatActionForever(action))
+        }
+        
+        func shake() {
+            let action1 = SKAction.scaleTo(0.8, duration: 1.0)
+            let action2 = SKAction.scaleTo(1.1, duration: 1.0)
+            let groupedAction = SKAction.group([action1, action2])
+            self.runAction(SKAction.repeatActionForever(groupedAction))
+        }
+        
+        let randomAnim = arc4random_uniform(3)
+        if randomAnim == 0 {
+            growAndShrink()
+        } else if randomAnim == 1 {
+            rotate()
+        } else {
+            shake()
+        }
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    enum BadgeAnimation: Int {
-        case GrowAndShrink = 0, Rotate, Shake
-    }
+
     
 }
