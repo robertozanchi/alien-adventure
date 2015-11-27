@@ -15,7 +15,9 @@ class SpecialBadge: Badge {
         self.texture = SKTexture(imageNamed: "BadgeTeal")
         
         enum BadgeAnimation: Int {
-            case GrowAndShrink = 0, Rotate, Shake
+            case GrowAndShrink = 0
+            case Rotate = 1
+            case Shake = 2
         }
     
         func growAndShrink() {
@@ -48,14 +50,26 @@ class SpecialBadge: Badge {
             self.runAction(SKAction.repeatActionForever(groupedAction))
         }
         
-        let randomAnim = arc4random_uniform(3)
-        if randomAnim == 0 {
+        var randomA = BadgeAnimation(rawValue: Int(arc4random_uniform(3)))
+        
+        switch randomA {
+        case 0:
             growAndShrink()
-        } else if randomAnim == 1 {
+        case 1:
             rotate()
-        } else {
+        case 2:
             shake()
+            
         }
+        
+//        let randomAnim = Int(arc4random_uniform(3))
+//        if randomAnim == 0 {
+//            growAndShrink()
+//        } else if randomAnim == 1 {
+//            rotate()
+//        } else {
+//            shake()
+//        }
         
     }
 
