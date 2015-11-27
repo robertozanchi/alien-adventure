@@ -50,26 +50,18 @@ class SpecialBadge: Badge {
             self.runAction(SKAction.repeatActionForever(groupedAction))
         }
         
-        var randomA = BadgeAnimation(rawValue: Int(arc4random_uniform(3)))
+        let randomAnimation = BadgeAnimation(rawValue: Int(arc4random_uniform(3)))
         
-        switch randomA {
+        switch randomAnimation!.rawValue {
         case 0:
             growAndShrink()
         case 1:
             rotate()
         case 2:
             shake()
-            
+        default:
+            rotate()
         }
-        
-//        let randomAnim = Int(arc4random_uniform(3))
-//        if randomAnim == 0 {
-//            growAndShrink()
-//        } else if randomAnim == 1 {
-//            rotate()
-//        } else {
-//            shake()
-//        }
         
     }
 
@@ -77,6 +69,4 @@ class SpecialBadge: Badge {
         fatalError("init(coder:) has not been implemented")
     }
 
-
-    
 }
