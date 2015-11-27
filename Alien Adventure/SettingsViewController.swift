@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
     // MARK: Add Targets
     
     func addTargets() {
-       
+
         levelSegmentedControl.addTarget(self,
             action: Selector("switchLevel:"),
             forControlEvents: .ValueChanged)
@@ -60,11 +60,11 @@ class SettingsViewController: UIViewController {
     // MARK: Implementing Actions
     
     func switchLevel(segmentControl: UISegmentedControl) {
-        Settings.Common.Level = 3
+        Settings.Common.Level = segmentControl.selectedSegmentIndex
     }
     
     func showBadges(switchControl: UISwitch) {
-        Settings.Common.ShowBadges = false
+        Settings.Common.ShowBadges = switchControl.selected
     }
     
     func startGame() {
