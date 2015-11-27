@@ -22,18 +22,13 @@ extension Hero {
         if allBadges.count < requestTypes.count {
             return false
         }
-        
-        var value: Bool = false
-        
+
         for request in requestTypes {
-            if allBadges.contains(request) {
-                value = value || true
-            } else {
-                value = value || false
+            if !allBadges.contains(request) {
+                return false
             }
-                
         }
         
-        return value
+        return true
     }
 }

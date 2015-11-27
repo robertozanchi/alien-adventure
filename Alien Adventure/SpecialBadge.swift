@@ -15,12 +15,22 @@ class SpecialBadge: Badge {
         self.texture = SKTexture(imageNamed: "BadgeTeal")
         
         enum BadgeAnimation: Int {
-            case GrowAndShrink = 0
-            case Rotate = 1
-            case Shake = 2
+            case GrowAndShrink = 0, Rotate, Shake
         }
     
         func growAndShrink() {
+            let action1 = SKAction.scaleTo(0.8, duration: 1.0)
+            let action2 = SKAction.scaleTo(1.1, duration: 1.0)
+            let groupedAction = SKAction.group([action1, action2])
+            self.runAction(SKAction.repeatActionForever(groupedAction))
+        }
+    
+        func rotate() {
+            let action = SKAction.rotateByAngle(CGFloat(-M_PI), duration: 1.5)
+            self.runAction(SKAction.repeatActionForever(action))
+        }
+        
+        func shake() {
             let x: Float = 10
             let y: Float = 6
             let numberOfTimes = 2.0 / 0.04
@@ -33,34 +43,20 @@ class SpecialBadge: Badge {
                 actionsArray.append(action)
                 actionsArray.append(action.reversedAction())
             }
-        
+            
             let sequencedAction = SKAction.sequence(actionsArray)
             self.runAction(SKAction.repeatActionForever(sequencedAction))
-        }
-    
-        func rotate() {
-            let action = SKAction.rotateByAngle(CGFloat(-M_PI), duration: 1.5)
-            self.runAction(SKAction.repeatActionForever(action))
-        }
-        
-        func shake() {
-            let action1 = SKAction.scaleTo(0.8, duration: 1.0)
-            let action2 = SKAction.scaleTo(1.1, duration: 1.0)
-            let groupedAction = SKAction.group([action1, action2])
-            self.runAction(SKAction.repeatActionForever(groupedAction))
         }
         
         let randomAnimation = BadgeAnimation(rawValue: Int(arc4random_uniform(3)))
         
-        switch randomAnimation!.rawValue {
-        case 0:
+        switch randomAnimation! {
+        case .GrowAndShrink:
             growAndShrink()
-        case 1:
+        case .Rotate:
             rotate()
-        case 2:
+        case .Shake:
             shake()
-        default:
-            rotate()
         }
         
     }

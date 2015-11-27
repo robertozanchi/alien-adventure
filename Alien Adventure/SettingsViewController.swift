@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController {
         
         showBadgesSwitch.addTarget(self,
             action: Selector("showBadges:"),
-            forControlEvents: .TouchUpInside)
+            forControlEvents: .ValueChanged)
         
         startGameButton.addTarget(self,
             action: Selector("startGame"),
@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
     }
     
     func showBadges(switchControl: UISwitch) {
-        Settings.Common.ShowBadges = switchControl.selected
+        Settings.Common.ShowBadges = switchControl.on
     }
     
     func startGame() {
