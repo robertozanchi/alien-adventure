@@ -27,7 +27,7 @@ extension Hero {
             } catch UDPolicingError.ValueLessThan10 {
                 errorDictionary[UDPolicingError.ValueLessThan10] = errorDictionary[UDPolicingError.ValueLessThan10]!+1
             } catch {
-                print("other error")
+                print("Unknown error")
             }
         }
         return errorDictionary
