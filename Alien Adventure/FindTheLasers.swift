@@ -11,10 +11,14 @@ extension Hero {
     func findTheLasers() -> (UDItem -> Bool) {
         
         func containsLaser(item: UDItem) -> Bool {
-            return true
+            let itemName: String = item.name
+            if itemName.rangeOfString("laser") != nil {
+                return true
+            } else {
+                return false
+            }
         }
-        
         return containsLaser
+
     }
-    
 }
